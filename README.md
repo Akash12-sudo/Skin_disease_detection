@@ -1,1 +1,2 @@
-# Skin_disease_detection
+# Skin Disease detection using Deep Learning 
+
