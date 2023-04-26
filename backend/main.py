@@ -1,13 +1,12 @@
 from flask import Flask,render_template,request
 import numpy as np
-#import matplotlib.pyplot as plt
 import tensorflow as tf
 from tensorflow import  keras
 from keras.models import load_model
 from keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.preprocessing.image import load_img,img_to_array
 
-model=tf.keras.models.load_model('../model-09-0.55.hdf5')
+
 test_datagen= ImageDataGenerator(
     rescale=1./255
 )
@@ -33,12 +32,13 @@ def predict():
     test_img_array=test_img_array.reshape((1,)+test_img_array.shape)
     batch=test_datagen.flow(test_img_array,batch_size=1)
     
-    #predicting the image 
-
+    # loading the model
+    model=tf.keras.models.load_model('../model-09-0.55.hdf5')
+    # predicting the image 
     result=model.predict(batch)
     predicted_class=np.argmax(result)
     print(predicted_class)
-    print(result)
+    print(result)                                           
  
     label = ['acene and rosacea','actinic','eczema','warts molluscam']
     
